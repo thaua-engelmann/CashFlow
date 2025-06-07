@@ -27,7 +27,8 @@ namespace CashFlow.Api.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error");
+                var errorResponse = new ResponseErrorJson("Internal Server Error");
+                return StatusCode(StatusCodes.Status500InternalServerError, errorResponse);
             }
 
         }
