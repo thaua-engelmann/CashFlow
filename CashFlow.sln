@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Application", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Communication", "src\CashFlow.Communication\CashFlow.Communication.csproj", "{C99AB7AE-7282-48D1-8A53-9DEDB95F1654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Exception", "CashFlow.Exception\CashFlow.Exception.csproj", "{61D1EE35-4877-4249-9DFF-61ABDE5E9135}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Exception", "src\CashFlow.Exception\CashFlow.Exception.csproj", "{61D1EE35-4877-4249-9DFF-61ABDE5E9135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
