@@ -3,10 +3,5 @@
     public class ExceptionCashFlow : SystemException
     {
 
-        public ExceptionCashFlow()
-        {
-            
-        }
-
     }
 }

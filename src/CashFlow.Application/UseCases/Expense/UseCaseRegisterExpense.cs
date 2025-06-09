@@ -1,4 +1,5 @@
 ﻿using CashFlow.Communication.Requests;
+using CashFlow.Communication.Responses;
 using CashFlow.Exception.ExceptionBase;
 
 namespace CashFlow.Application.UseCases.Expense
@@ -6,9 +7,11 @@ namespace CashFlow.Application.UseCases.Expense
     public class UseCaseRegisterExpense
     {
 
-        public void Execute(RequestRegisterExpenseJson request)
+        public ResponseRegisteredExpenseJson Execute(RequestRegisterExpenseJson request)
         {
             Validate(request);
+
+            return new ResponseRegisteredExpenseJson();
         }
 
         private void Validate(RequestRegisterExpenseJson request)

@@ -1,6 +1,6 @@
 ﻿namespace CashFlow.Exception.ExceptionBase
 {
-    public class ExceptionErrorOnValidation : SystemException
+    public class ExceptionErrorOnValidation : ExceptionCashFlow
     {
         public List<string> Messages { get; set; }
 
