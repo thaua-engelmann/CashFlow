@@ -79,7 +79,7 @@ namespace CashFlow.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PaymentType not valid..
+        ///   Looks up a localized string similar to Payment type is not valid.
         /// </summary>
         public static string PAYMENT_NOT_VALID {
             get {
