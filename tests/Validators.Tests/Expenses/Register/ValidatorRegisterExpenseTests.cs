@@ -2,6 +2,7 @@
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Enums;
 using CommomTestUtilities.Requests;
+using FluentAssertions;
 
 namespace Validators.Tests.Expenses.Register
 {
@@ -30,7 +31,7 @@ namespace Validators.Tests.Expenses.Register
             var result = validator.Validate(request);
 
             // Assert = Where the given value is indeed validated / compared and the result is defined. 
-            Assert.True(result.IsValid);
+            result.IsValid.Should().BeTrue();
         }
 
     }
