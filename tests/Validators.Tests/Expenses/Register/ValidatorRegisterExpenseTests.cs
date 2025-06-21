@@ -3,6 +3,7 @@ using CashFlow.Communication.Requests;
 using CashFlow.Communication.Enums;
 using CommomTestUtilities.Requests;
 using FluentAssertions;
+using CashFlow.Exception;
 
 namespace Validators.Tests.Expenses.Register
 {
@@ -34,5 +35,18 @@ namespace Validators.Tests.Expenses.Register
             result.IsValid.Should().BeTrue();
         }
 
+        [Fact]
+        public void ErrorTitleEmpty()
+        {
+            var validator = new ValidatorRegisterExpense();
+            var request = RequestRegisterExpenseBuilder.Build();
+
+            request.Title = string.Empty;
+
+            var result = validator.Validate(request);  
+
+            result.IsValid.Should().BeFalse();
+            result.Errors.Should().ContainSingle().And.Contain(error => error.ErrorMessage.Equals(ResourceErrorMessages.TITLE_REQUIRED));
+        }
     }
 }
