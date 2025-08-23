@@ -2,8 +2,10 @@
 {
     public class ResponseRegisteredExpenseJson
     {
+        public long Id { get; }
 
-        public Guid Id { get; private set; } = Guid.NewGuid();
-
+        public ResponseRegisteredExpenseJson(long id) {
+            Id = id;
+        }
     }
 }
