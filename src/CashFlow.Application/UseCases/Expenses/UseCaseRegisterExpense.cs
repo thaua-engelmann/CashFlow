@@ -4,6 +4,7 @@ using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Entities;
 using CashFlow.Exception.ExceptionBase;
 using CashFlow.Domain.Repositories;
+using CashFlow.Application.AutoMapper;
 
 namespace CashFlow.Application.UseCases.Expenses
 {
@@ -12,16 +13,20 @@ namespace CashFlow.Application.UseCases.Expenses
 
         private readonly IExpensesRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly AutoMapping _autoMapping;
 
-        public UseCaseRegisterExpense(IExpensesRepository repository, IUnitOfWork unitOfWork)
+        public UseCaseRegisterExpense(IExpensesRepository repository, IUnitOfWork unitOfWork, AutoMapping autoMapping)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
+            _autoMapping = autoMapping;
         }
 
         public async Task<ResponseRegisteredExpenseJson> Execute(RequestRegisterExpenseJson request)
         {
             Validate(request);
+
+            //var entity2 = _autoMapping.Requ
 
             var entity = new Expense
             {
