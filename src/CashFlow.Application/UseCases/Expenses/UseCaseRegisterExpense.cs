@@ -1,10 +1,10 @@
-﻿using CashFlow.Communication.Requests;
+﻿using AutoMapper;
+using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
-using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Domain.Entities;
-using CashFlow.Exception.ExceptionBase;
 using CashFlow.Domain.Repositories;
-using CashFlow.Application.AutoMapper;
+using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Exception.ExceptionBase;
 
 namespace CashFlow.Application.UseCases.Expenses
 {
@@ -13,34 +13,34 @@ namespace CashFlow.Application.UseCases.Expenses
 
         private readonly IExpensesRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly AutoMapping _autoMapping;
+        private readonly IMapper _mapper;
 
-        public UseCaseRegisterExpense(IExpensesRepository repository, IUnitOfWork unitOfWork, AutoMapping autoMapping)
+        public UseCaseRegisterExpense(IExpensesRepository repository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
-            _autoMapping = autoMapping;
+            _mapper = mapper;
         }
 
         public async Task<ResponseRegisteredExpenseJson> Execute(RequestRegisterExpenseJson request)
         {
             Validate(request);
 
-            //var entity2 = _autoMapping.Requ
+            var entity = _mapper.Map<Expense>(request);
 
-            var entity = new Expense
-            {
-                Title = request.Title,
-                Amount = request.Amount,
-                Date = request.Date,
-                PaymentType = request.PaymentType,
-                Description = request.Description,
-            };
+            //var entity = new Expense
+            //{
+            //    Title = request.Title,
+            //    Amount = request.Amount,
+            //    Date = request.Date,
+            //    PaymentType = request.PaymentType,
+            //    Description = request.Description,
+            //};
 
             await _repository.Add(entity);
             await _unitOfWork.Commit();
 
-            return new ResponseRegisteredExpenseJson();
+            return new ResponseRegisteredExpenseJson(entity.Id);
         }
 
         private void Validate(RequestRegisterExpenseJson request)
