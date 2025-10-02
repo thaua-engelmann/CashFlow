@@ -40,7 +40,7 @@ namespace CashFlow.Application.UseCases.Expenses
             await _repository.Add(entity);
             await _unitOfWork.Commit();
 
-            return new ResponseRegisteredExpenseJson(entity.Id);
+            return _mapper.Map<ResponseRegisteredExpenseJson>(entity);
         }
 
         private void Validate(RequestRegisterExpenseJson request)
