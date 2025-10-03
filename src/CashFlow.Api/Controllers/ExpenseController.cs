@@ -1,4 +1,5 @@
-﻿using CashFlow.Application.UseCases.Expenses.Register;
+﻿using CashFlow.Application.UseCases.Expenses.GetAll;
+using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,13 @@ namespace CashFlow.Api.Controllers
         {
             var response = await useCase.Execute(request);
             return Created(string.Empty, response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromServices] IUseCaseGetAllExpenses useCase)
+        {
+            var response = await useCase.Execute();
+            return Ok(response);
         }
     }
 }
