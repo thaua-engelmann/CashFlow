@@ -18,6 +18,6 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
         }
 
         public async Task<List<Expense>> GetAll() =>
-            await _dbContext.Expenses.ToListAsync();
+            await _dbContext.Expenses.AsNoTracking().ToListAsync();
     }
 }
