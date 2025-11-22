@@ -123,6 +123,9 @@
   <data name="DATE_MUST_NOT_BE_FUTURE" xml:space="preserve">
     <value>Date must not be in the future.</value>
   </data>
+  <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
+    <value>Expense was not found.</value>
+  </data>
   <data name="PAYMENT_NOT_VALID" xml:space="preserve">
     <value>Payment type is not valid</value>
   </data>
