@@ -1,4 +1,5 @@
 ﻿using CashFlow.Application.UseCases.Expenses.GetAll;
+using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
@@ -22,6 +23,13 @@ namespace CashFlow.Api.Controllers
         public async Task<IActionResult> GetAll([FromServices] IUseCaseGetAllExpenses useCase)
         {
             var response = await useCase.Execute();
+            return Ok(response);
+        }
+
+        [HttpGet("{id:long}")]
+        public async Task<IActionResult> GetById([FromServices] IUseCaseGetByIdExpense useCase, [FromRoute] long id)
+        {
+            var response = await useCase.Execute(id);
             return Ok(response);
         }
     }
