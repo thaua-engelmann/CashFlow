@@ -22,6 +22,7 @@ namespace CashFlow.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IExpensesWriteOnlyRepository, ExpensesWriteOnlyRepository>();
             services.AddScoped<IExpensesReadOnlyRepository, ExpensesReadOnlyRepository>();
+            services.AddScoped<IExpensesDeleteOnlyRepository, ExpensesDeleteOnlyRepository>();
         }
         private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
         {
