@@ -15,7 +15,8 @@ public sealed class UseCaseGetAllExpenses : IUseCaseGetAllExpenses
         _mapper = mapper;
     }
 
-    public async Task<ResponseGetAllExpenses> Execute() {
+    public async Task<ResponseGetAllExpenses> Execute()
+    {
         var expensesDb = await _repository.GetAll();
 
         var response = new ResponseGetAllExpenses

@@ -2,25 +2,24 @@
 using CashFlow.Communication.Enums;
 using CashFlow.Communication.Requests;
 
-namespace CommomTestUtilities.Requests
+namespace CommomTestUtilities.Requests;
+
+public class RequestRegisterExpenseBuilder
 {
-    public class RequestRegisterExpenseBuilder
+
+    public static RequestExpenseJson Build()
     {
 
-        public static RequestExpenseJson Build()
+        var faker = new Faker();
+
+        return new RequestExpenseJson
         {
-
-            var faker = new Faker();
-
-            return new RequestExpenseJson
-            {
-                Title = faker.Commerce.ProductName(),
-                Description = faker.Commerce.ProductDescription(),
-                Date = faker.Date.Past(),
-                Amount = faker.Random.Decimal(min: 1, max: 2000),
-                PaymentType = faker.PickRandom<PaymentType>()
-            };
-        }
-
+            Title = faker.Commerce.ProductName(),
+            Description = faker.Commerce.ProductDescription(),
+            Date = faker.Date.Past(),
+            Amount = faker.Random.Decimal(min: 1, max: 2000),
+            PaymentType = faker.PickRandom<PaymentType>()
+        };
     }
+
 }

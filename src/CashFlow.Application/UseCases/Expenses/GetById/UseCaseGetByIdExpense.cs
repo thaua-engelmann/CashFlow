@@ -5,6 +5,7 @@ using CashFlow.Exception;
 using CashFlow.Exception.ExceptionBase;
 
 namespace CashFlow.Application.UseCases.Expenses.GetById;
+
 public sealed class UseCaseGetByIdExpense : IUseCaseGetByIdExpense
 {
     private readonly IExpensesReadOnlyRepository _repository;

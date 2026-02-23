@@ -23,7 +23,7 @@ public class UseCaseDeleteExpense : IUseCaseDeleteExpense
         {
             throw new ExceptionNotFound(ResourceErrorMessages.EXPENSE_NOT_FOUND);
         }
-    
+
         await _unitOfWork.Commit();
     }
 }

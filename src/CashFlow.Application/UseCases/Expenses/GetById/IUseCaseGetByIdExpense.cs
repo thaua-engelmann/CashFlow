@@ -2,6 +2,7 @@
 
 namespace CashFlow.Application.UseCases.Expenses.GetById;
 
-public interface IUseCaseGetByIdExpense {
+public interface IUseCaseGetByIdExpense
+{
     Task<ResponseExpense> Execute(long id);
 }
