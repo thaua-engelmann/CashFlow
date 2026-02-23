@@ -1,60 +1,44 @@
 ﻿using AutoMapper;
+using CashFlow.Application.Common;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using CashFlow.Domain.Entities;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
-using CashFlow.Exception.ExceptionBase;
+using FluentValidation;
 
 namespace CashFlow.Application.UseCases.Expenses.Register
 {
-    public class UseCaseRegisterExpense : IUseCaseRegisterExpense
+    public class UseCaseRegisterExpense : UseCaseBase, IUseCaseRegisterExpense
     {
 
         private readonly IExpensesWriteOnlyRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IValidator<RequestExpenseJson> _validator;
 
-        public UseCaseRegisterExpense(IExpensesWriteOnlyRepository repository, IUnitOfWork unitOfWork, IMapper mapper)
+        public UseCaseRegisterExpense(
+            IExpensesWriteOnlyRepository repository,
+            IUnitOfWork unitOfWork,
+            IMapper mapper,
+            IValidator<RequestExpenseJson> validator)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _validator = validator;
         }
 
-        public async Task<ResponseRegisteredExpenseJson> Execute(RequestRegisterExpenseJson request)
+        public async Task<ResponseRegisteredExpenseJson> Execute(RequestExpenseJson request)
         {
-            Validate(request);
+            Validate(_validator, request);
 
             var entity = _mapper.Map<Expense>(request);
-
-            //var entity = new Expense
-            //{
-            //    Title = request.Title,
-            //    Amount = request.Amount,
-            //    Date = request.Date,
-            //    PaymentType = request.PaymentType,
-            //    Description = request.Description,
-            //};
 
             await _repository.Add(entity);
             await _unitOfWork.Commit();
 
             return _mapper.Map<ResponseRegisteredExpenseJson>(entity);
         }
-
-        private void Validate(RequestRegisterExpenseJson request)
-        {
-
-            var validator = new ValidatorRegisterExpense();
-            var result = validator.Validate(request);
-
-            if (!result.IsValid)
-            {
-                var errorMessages = result.Errors.Select(validationFailure => validationFailure.ErrorMessage).ToList();
-                throw new ExceptionErrorOnValidation(errorMessages);
-            }
-        }
-
     }
 }
