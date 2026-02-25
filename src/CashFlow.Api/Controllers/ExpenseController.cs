@@ -43,4 +43,14 @@ public class ExpenseController : CashFlowBaseController
         await useCase.Execute(id);
         return NoContent();
     }
+
+    [HttpPut("{id:long}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Update([FromServices] IUseCaseUpdateExpense useCase, [FromRoute] long id, [FromBody] RequestExpenseJson request)
+    {
+        await useCase.Execute(id, request);
+        return NoContent();
+    }
 }
