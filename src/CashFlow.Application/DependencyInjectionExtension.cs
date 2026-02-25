@@ -7,6 +7,7 @@ using CashFlow.Application.UseCases.Expenses.Register;
 using CashFlow.Communication.Requests;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
+using CashFlow.Application.UseCases.Expenses.Update;
 
 namespace CashFlow.Application;
 
@@ -26,6 +27,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUseCaseGetAllExpenses, UseCaseGetAllExpenses>();
         services.AddScoped<IUseCaseGetByIdExpense, UseCaseGetByIdExpense>();
         services.AddScoped<IUseCaseDeleteExpense, UseCaseDeleteExpense>();
+        services.AddScoped<IUseCaseUpdateExpense, UseCaseUpdateExpense>();
     }
 
     private static void AddAutoMapper(IServiceCollection services)
