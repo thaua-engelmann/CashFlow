@@ -5,7 +5,6 @@ using CashFlow.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace CashFlow.Infrastructure;
 
@@ -23,6 +22,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IExpensesWriteOnlyRepository, ExpensesWriteOnlyRepository>();
         services.AddScoped<IExpensesReadOnlyRepository, ExpensesReadOnlyRepository>();
         services.AddScoped<IExpensesDeleteOnlyRepository, ExpensesDeleteOnlyRepository>();
+        services.AddScoped<IExpensesUpdateOnlyRepository, ExpensesUpdateOnlyRepository>();
     }
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
     {
